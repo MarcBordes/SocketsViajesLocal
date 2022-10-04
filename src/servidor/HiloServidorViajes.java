@@ -38,6 +38,7 @@ class HiloServidorViajes implements Runnable {
 		boolean done = false;
 	    // ...
 		try {
+
 			while (!done) {
 				// Recibe una petición del cliente
 				// Extrae la operación y sus parámetros
