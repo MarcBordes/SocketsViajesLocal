@@ -18,4 +18,4 @@ public class ClienteViajes {
 	// por llamadas al objeto de la clase AuxiliarClienteViajes.
 	// Los métodos a llamar tendrán la misma signatura.
 
-} // fin class
+} // fin classe
