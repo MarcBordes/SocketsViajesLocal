@@ -35,7 +35,7 @@ public class ServidorViajes {
 		try { 
 			// Instancia un socket stream para aceptar conexiones
 			myConnectionSocket = new ServerSocket(serverPort); 
-			/**/     System.out.println("Servidor de la casa de Subastas listo.");  
+			/**/     System.out.println("Servidor de la casa de alquiler listo.");
 			while (true) {  // Bucle infinito aceptando y sirviendo conexiones
 				// Espera una conexion de un cliente
 				/**/        System.out.println("Esperando conexion de algun cliente.");

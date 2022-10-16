@@ -157,7 +157,7 @@ public class GestorViajes {
      * @param origen
      * @return JSONArray de viajes con un origen dado. Vacío si no hay viajes disponibles con ese origen
      */
-    public JSONArray consultaViajes(String origen) {
+    public  JSONArray consultaViajes(String origen) {
         // TODO
 
 
@@ -183,7 +183,7 @@ public class GestorViajes {
      * @param codcli
      * @return JSONObject con la información del viaje. Vacío si no existe o no está disponible
      */
-    public JSONObject reservaViaje(String codviaje, String codcli) {
+    public synchronized JSONObject reservaViaje(String codviaje, String codcli) {
 
         // TODO
         JSONObject o = new JSONObject();
@@ -208,7 +208,7 @@ public class GestorViajes {
      * @param codcli	codigo del cliente
      * @return	JSON del viaje en que se ha anulado la reserva. JSON vacio si no se ha anulado
      */
-    public JSONObject anulaReserva(String codviaje, String codcli) {
+    public synchronized JSONObject anulaReserva(String codviaje, String codcli) {
         // TODO
 
         JSONObject o = new JSONObject();
@@ -257,13 +257,16 @@ public class GestorViajes {
      * @param numplazas
      * @return	JSONObject con los datos del viaje ofertado
      */
-    public JSONObject ofertaViaje(String codcli, String origen, String destino, String fecha, long precio, long numplazas) {
+    public synchronized JSONObject ofertaViaje(String codcli, String origen, String destino, String fecha, long precio, long numplazas) {
         // TODO
-
-        Viaje v = new Viaje(codcli,origen,destino, fecha, precio, numplazas);
-        mapa.put(v.getCodviaje(), v);	//añadimos el viaje al mapa para ofertarlo
-
-        return v.toJSON();
+        JSONObject o = new JSONObject();
+        Viaje v;
+        if(es_fecha_valida(fecha)) {
+            v = new Viaje(codcli, origen, destino, fecha, precio, numplazas);
+            mapa.put(v.getCodviaje(), v);    //añadimos el viaje al mapa para ofertarlo
+            o = v.toJSON();
+        }
+        return o;
 
     }
 
